@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trang đăng nhập đăng kí</title>
+    <style>
+      body {
+        background: url("https://previews.123rf.com/images/kitzcorner/kitzcorner1707/kitzcorner170700032/83067493-women-cosmetics-and-fashion-items-on-color-background-with-copy-space-top-view.jpg");
+        background-size: cover;
+        background-position-y: -80px;
+        font-size: 16px;
+      }
+      /* Thiết kế chung cho form */
+      form {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #ccc;
+        max-width: 400px;
+        display: none; /* Ẩn form ban đầu */
+      }
+
+      /* Thiết kế cho các trường input */
+      form input[type="text"],
+      form input[type="password"] {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      #container {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Thiết kế cho nút đăng nhập/đăng kí */
+      form button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* Thiết kế cho đường link "Đăng kí" và "Đăng nhập" */
+      a {
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+        color: #4caf50;
+        text-decoration: none;
+      }
+
+      /* Hiển thị form đăng kí và ẩn form đăng nhập */
+      #register-form {
+        display: none;
+      }
+      .form {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #ccc;
+        max-width: 400px;
+      }
+
+      #login-form {
+        display: block;
+      }
+
+      #register-form {
+        display: none;
+      }
+
+      /* Định vị các form trong container */
+      .form {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Hiển thị form đăng nhập và ẩn form đăng kí */
+      #login-form {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container" id="container">
+      <form id="login-form" class="form">
+        <h2>Đăng nhập</h2>
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" name="username" />
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" />
+        <button type="submit">Đăng nhập</button>
+        <p>Chưa có tài khoản? <a href="#" id="register-link">Đăng kí</a></p>
+      </form>
+      <form id="register-form" style="display: none" class="form">
+        <h2>Đăng kí</h2>
+        <label for="new-username">Tên đăng nhập:</label>
+        <input type="text" id="new-username" name="new-username" />
+        <label for="new-password">Mật khẩu:</label>
+        <input type="password" id="new-password" name="new-password" />
+        <button type="submit">Đăng kí</button>
+        <p>Đã có tài khoản? <a href="#" id="login-link">Đăng nhập</a></p>
+      </form>
+    </div>
+    <script>
+      const loginForm = document.getElementById("login-form");
+      const registerForm = document.getElementById("register-form");
+      const registerLink = document.getElementById("register-link");
+      const loginLink = document.getElementById("login-link");
+
+      // Lưu trữ thông tin người dùng
+      const users = [
+        { username: "user1", password: "password1" },
+        { username: "user2", password: "password2" },
+        { username: "user3", password: "password3" },
+      ];
+
+      // Xử lý sự kiện khi người dùng đăng nhập
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Ngăn chặn gửi form đi
+        const username = event.target.username.value;
+        const password = event.target.password.value;
+        const user = users.find((user) => user.username === username);
+
+        if (user && user.password === password) {
+          alert("Đăng nhập thành công!");
+          window.location.href = "http://127.0.0.1:5500/jsa16/Day5/new.html";
+        } else {
+          alert("Tên đăng nhập hoặc mật khẩu không chính xác!");
+        }
+      });
+
+      // Xử lý sự kiện khi người dùng đăng kí
+      registerForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Ngăn chặn gửi form đi
+        const username = event.target["new-username"].value;
+        const password = event.target["new-password"].value;
+
+        // Kiểm tra xem người dùng đã tồn tại chưa
+        const userExists = users.some((user) => user.username === username);
+        if (userExists) {
+          alert("Tên đăng nhập đã tồn tại!");
+        } else {
+          // Thêm người dùng mới vào danh sách
+          users.push({ username, password });
+          alert("Đăng kí thành công!");
+          // Chuyển đổi về phần đăng nhập
+          showLoginForm();
+        }
+      });
+
+      // Xử lý sự kiện khi người dùng bấm vào đường link "Đăng kí"
+      registerLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        showRegisterForm();
+      });
+
+      // Xử lý sự kiện khi người dùng bấm vào đường link "Đăng nhập"
+      loginLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        showLoginForm();
+      });
+
+      // Hiển thị form đăng kí và ẩn form đăng nhập
+      function showRegisterForm() {
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+      }
+
+      // Hiển thị form đăng nhập và ẩn form đăng kí
+      function showLoginForm() {
+        registerForm.style.display = "none";
+        loginForm.style.display = "block";
+      }
+      function login() {
+        // Lấy thông tin đăng nhập từ người dùng
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        // Kiểm tra thông tin đăng nhập
+        if (username === "" || password === "") {
+          alert("Vui lòng điền đầy đủ thông tin đăng nhập.");
+          return false;
+        } else if (localStorage.getItem(username) !== password) {
+          alert("Thông tin đăng nhập không đúng.");
+          return false;
+        }
+
+        // Chuyển hướng đến trang web mới
+        window.location.href = "http://127.0.0.1:5500/jsa16/Day5/new.html";
+        return true;
+      }
+    </script>
+  </body>
+</html>

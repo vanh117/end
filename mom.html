@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Person Website</title>
+    <style>
+      /* Set the font, font size, and font color for the page */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+      }
+
+      /* Add a background color to the header */
+      header {
+        background-color: #f2f2f2;
+      }
+
+      /* Center the header content */
+      .nav {
+        display: flex;
+        justify-content: center;
+      }
+
+      .content-nav ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+      }
+
+      .content-nav li {
+        margin: 0 10px;
+      }
+
+      .content-nav a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      /* Add a border and padding to the sections */
+      section {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      /* Center the section headings */
+      section h1,
+      section h2 {
+        text-align: center;
+      }
+
+      /* Add a hover effect to the navigation links */
+      .content-nav a:hover {
+        background-color: #ddd;
+      }
+
+      /* Style the slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+
+      /* Style the slideshow images */
+      .mySlides {
+        display: none;
+        width: 100%;
+      }
+
+      .mySlides img {
+        vertical-align: middle;
+        padding-left: 15%;
+      }
+
+      /* Style the slideshow buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: #333;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+      }
+
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+      }
+
+      /* Add a background color and padding to the slideshow captions */
+      .slideshow-container p {
+        background-color: #333;
+        color: white;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <header>
+      <h1>Hà Thanh Hương</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Biography</a></li>
+          <li><a href="#">Photos</a></li>
+
+          <li><a href="#">Interests</a></li>
+        </ul>
+      </nav>
+    </header>
+    <br /> -->
+    <header>
+      <nav>
+        <div class="img-nav" id="logo">
+          <img
+            src="https://ephoto360.com/uploads/w750/2016/10/21/text-halloween-online-25809dd6b765da_df7d8c897dabc57d5fe86af6507b7c04.jpg"
+            alt=""
+            style="width: 100px"
+          />
+        </div>
+        <div class="content-nav" style="font-size: 30px">
+          <ul>
+            <li><a href="home.html">Trang Chủ</a></li>
+            <li><a href="shop.html">Sản Phẩm</a></li>
+            <li><a href="intro.html">Giới Thiệu</a></li>
+            <li><a href="everything.html">Liên lạc</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section>
+      <h1 style="text-align: center">Hà Thanh Hương</h1>
+      <h2>Về mẹ:</h2>
+      <p>
+        Sinh vào ngày 22/3/1975. Thích uống trà, đọc những cuốn sách hay. Thích
+        dọn dẹp nhà cửa. Là một con người của công việc
+      </p>
+    </section>
+
+    <section>
+      <h2>Photos</h2>
+      <img src="john-smith.jpg" alt="Hà Thanh Hương" />
+    </section>
+
+    <section>
+      <h2>Kỉ niệm</h2>
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img
+            src="https://znews-photo.zingcdn.me/w660/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg"
+          />
+          <p>Một hôm đi chơi</p>
+        </div>
+
+        <div class="mySlides">
+          <img src="image2.jpg" />
+          <p>Lúc bị ốm</p>
+        </div>
+
+        <div class="mySlides">
+          <img src="image3.jpg" />
+          <p>Một ngày của mẹ</p>
+        </div>
+
+        <button class="prev" onclick="plusSlides(-1)">❮</button>
+        <br />
+        <button class="next" onclick="plusSlides(1)">❯</button>
+      </div>
+    </section>
+    <br />
+
+    <script src="js/mom.js"></script>
+  </body>
+</html>
